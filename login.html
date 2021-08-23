@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/login-signup.css">
+    <title>Moldo Foods</title>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBdSb5L4qkSYIOAZeDYtjaTN1_GAQSQtSw",
+            authDomain: "authentication-4c81f.firebaseapp.com",
+            projectId: "authentication-4c81f",
+            storageBucket: "authentication-4c81f.appspot.com",
+            messagingSenderId: "560971801714",
+            appId: "1:560971801714:web:cb9ab6101fa75674ce4eeb",
+            measurementId: "G-JMTWFHYN4G"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</head>
+
+<body onload="getCurrentUser()">
+
+
+
+    <div class="parent clearfix">
+        <div class="bg-illustration">
+            <!-- <img src="https://i.ibb.co/Pcg0Pk1/logo.png" alt="logo"> -->
+
+
+        </div>
+
+        <div class="login">
+            <div class="container">
+                <h1>Wellcome <span class="Moldo">Moldo Foods</span><br />Login Here</h1>
+
+                <div class="login-form was-validated">
+                    <form action="">
+
+                        <input type="email" placeholder="Enter Email" name="email" required id="login_user_email">
+
+                        <input type="password" placeholder=" Password" name="psw" required id="login_user_password">
+                        <p>Forget password?<a href="#" style="color:dodgerblue" onclick="sendPasswordResetEmailUser()">
+                                Click Here
+                                !</a>.</p>
+
+                        <button type="button" id="sign_up_btn" onclick="loginUser() ">Sign-Up</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="text-muted">© 2021 Moldo Food, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+
+            </ul>
+        </footer>
+    </div>
+
+
+
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js "
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM "
+        crossorigin="anonymous "></script>
+
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js " integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js " integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF " crossorigin="anonymous "></script>
+    -->
+    <script src="./js/app.js "></script>
+</body>
+
+</html>

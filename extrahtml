@@ -1,0 +1,109 @@
+<!-- Login Modal -->
+    <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable " id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body was-validated ">
+                    <div class="mb-3">
+                        <label for="validationServer01" class="form-label">User name</label>
+                        <input type="text" class="form-control" required>
+
+                    </div>
+                    <div class=" mb-3 ">
+                        <label for="exampleInputEmail1 " class="form-label ">Email address</label>
+                        <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp " required>
+                        <div id="emailHelp " class="form-text ">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="exampleInputPassword1 " class="form-label ">Password</label>
+                        <input type="password " class="form-control " id="login_password " required>
+                    </div>
+                </div>
+                <div class=" mx-3 mb-3 ">
+                    <button type="button" class="btn btn-dark login_modal_btn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade modal-dialog modal-dialog-centered modal-dialog-scrollable " id="SignupModal" tabindex="-1" aria-labelledby="SignupModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="SignupModalLabel">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class=" mb-3 ">
+                        <label for="exampleInputEmail1 " class="form-label ">Email address</label>
+                        <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp ">
+                        <div id="emailHelp " class="form-text ">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="exampleInputPassword1 " class="form-label ">Password</label>
+                        <input type="password " class="form-control " id="exampleInputPassword1 ">
+                    </div>
+                </div>
+                <div class=" mx-3 mb-3 ">
+                    <button type="button " class="btn btn-dark ">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    .//////////////////////////ADD ITem
+
+
+     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Items</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="imgcontainer">
+                            <label>
+                                <img src="./assets/add_item_image.jpg" alt="Avatar" class="avatar avatar-custom"
+                                    id="avatar-custom">
+                                <input type="file" placeholder="Upload Image" onchange="imageSelected()"
+                                    name="upload-image" required id="upload_item_image">
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class=" mb-3 ">
+                        <label for="Item_Name" class="form-label ">Item Name</label>
+                        <input type="text " class="form-control " id="Item_Name" required>
+
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="Item_Price" class="form-label ">Item Price</label>
+                        <input type="text " class="form-control " id="Item_Price" required>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" id="item_selected">
+                            <option selected>Item Categories</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Italian">Italian</option>
+                            <option value="Pakistani">Pakistani</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="Add_food_Item" onclick=" addItem(this)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>

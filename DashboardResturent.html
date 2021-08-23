@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Moldo Foods</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBdSb5L4qkSYIOAZeDYtjaTN1_GAQSQtSw",
+            authDomain: "authentication-4c81f.firebaseapp.com",
+            projectId: "authentication-4c81f",
+            storageBucket: "authentication-4c81f.appspot.com",
+            messagingSenderId: "560971801714",
+            appId: "1:560971801714:web:cb9ab6101fa75674ce4eeb",
+            measurementId: "G-JMTWFHYN4G"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+    </script>
+</head>
+
+<body onload="getItems()">
+
+    <!-- Nav Bar -->
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="https://source.unsplash.com/160x160/?Resturent,Chinese" alt="" class="d-inline-block align-text-top local_nav_img">
+
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Add Item</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#order">Orders From Customer</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#pending">Pending Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#delivered">Delivered Order</a>
+                    </li>
+
+                </ul>
+                <div class="d-flex justify-content-start">
+                    <input class="form-control  navbar_search_box" type="search " placeholder="Search " aria-label="Search ">
+                    <button type="button" class="btn btn-outline-secondary navbar_search_btn">Search</button>
+                    <button type="button" class="btn btn-outline-secondary navbar_search_btn" onclick="signOut()">LogOut</button>
+
+                    <!-- <button type="button" class="btn btn-outline-success" onclick="">check</button> -->
+                    <!-- <button type="button" class="btn btn-outline-success navbar_login_btn" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
+                    <button type="button" class="btn btn-outline-success navbar_sign_btn" data-bs-toggle="modal" data-bs-target="#SignupModal">Sign Up</button> -->
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="local_carosel">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="./assets/Item-carisol-3.jpg" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <!-- <h5>Moldo Foods</h5>
+                        <p>Quality is our best practice</p> -->
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- Adding Items -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Items</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <div class="imgcontainer">
+                            <label>
+                                <img src="./assets/add_item_image.jpg" alt="Avatar" class="avatar avatar-custom"
+                                    id="avatar-custom">
+                                <input type="file" placeholder="Upload Image" onchange="imageSelected()"
+                                    name="upload-image" required id="upload_item_image">
+                            </label>
+                        </div>
+
+                    </div>
+                    <div class=" mb-3 ">
+                        <label for="Item_Name" class="form-label ">Item Name</label>
+                        <input type="text " class="form-control " id="Item_Name" required>
+
+                    </div>
+                    <div class="mb-3 ">
+                        <label for="Item_Price" class="form-label ">Item Price</label>
+                        <input type="text " class="form-control " id="Item_Price" required>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-select" aria-label="Default select example" id="item_selected">
+                            <option selected>Item Categories</option>
+                            <option value="Chinese">Chinese</option>
+                            <option value="Chaomin">Chaomin</option>
+                            <option value="Singaporian">Singaporian</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="Add_food_Item" onclick=" addItem(this)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="order" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="pending" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Pending Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delivered" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Delivered Orders</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container my-5  d-flex justify-content-sm-center flex-wrap " id="Item_card_container">
+        <div class="card my-4 items-card mx-4 shadow p-3 mb-5 bg-white rounded" style="width: 18rem;">
+            <img src="./assets/Slide_1.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Item Name:</h5>
+                <p class="card-text">Rice</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h5>Item Price:</h5>
+                    <span>
+                        <p>100</p>
+                    </span>
+                </li>
+
+
+            </ul>
+
+        </div>
+      
+
+       
+
+    </section>
+
+
+
+   
+
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+                    <svg class="bi" width="30" height="24">
+                        <use xlink:href="#bootstrap"></use>
+                    </svg>
+                </a>
+                <span class="text-muted">© 2021 Moldo Food, Inc</span>
+            </div>
+
+            <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+
+            </ul>
+        </footer>
+    </div>
+
+
+
+
+    <!-- bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script>
+
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js " integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js " integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF " crossorigin="anonymous "></script>
+    -->
+    <script src="./js/app.js "></script>
+</body>
+
+</html>
